@@ -16,7 +16,7 @@ export default function AccordionList({ accordionList }: AccordionListProps) {
             key={key}
             aria-label={ariaLabel}
             title={title}
-            className="my-3 text-xl font-medium"
+            className="my-3 text-xs font-sm text-right sm:text-xl"
           >
             {answer}
           </AccordionItem>
