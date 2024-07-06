@@ -22,7 +22,7 @@ export default function QuestionSquare() {
       Swal.fire({
         position: "center",
         icon: "success",
-        title: "شكراً لك",
+        title: "شكراً لسؤالك ! 🔥",
         showConfirmButton: false,
         timer: 1500,
       });
