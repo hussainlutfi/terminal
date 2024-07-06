@@ -3,6 +3,9 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { EnterQuestion } from "../action";
+import Swal from "sweetalert2";
+import "sweetalert2/dist/sweetalert2.min.css";
+import "@sweetalert2/theme-dark/dark.css";
 
 export default function QuestionSquare() {
   const [question, setQuestion] = useState<string>();
@@ -16,6 +19,13 @@ export default function QuestionSquare() {
 
     try {
       await EnterQuestion(question!);
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "شكراً لك",
+        showConfirmButton: false,
+        timer: 1500,
+      });
       setQuestion("");
     } catch (error) {
       console.error("Error submitting question:", error);
