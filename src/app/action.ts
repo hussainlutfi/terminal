@@ -1,6 +1,6 @@
 "use server";
 
-import { createClient } from "./../../utils/supabase/server";
+import { createClient } from "./../../utils/supabase/client";
 
 export async function EnterQuestion(question: string) {
   const { data, error } = await createClient()
