@@ -29,7 +29,7 @@ export default function AccordionList({ accordionList }: AccordionListProps) {
             key={key}
             aria-label={ariaLabel}
             title={title}
-            className="py-3 h text-xs font-extrabold font-sm text-right hover:bg-white hover:bg-opacity-10   sm:text-xl"
+            className="py-3 h text-xs font-extrabold text-white text-right hover:bg-white hover:bg-opacity-10   sm:text-xl"
           >
             {splitter(answer)}
           </AccordionItem>
