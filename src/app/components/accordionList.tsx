@@ -22,7 +22,7 @@ export default function AccordionList({ accordionList }: AccordionListProps) {
   }
 
   return (
-    <Accordion>
+    <Accordion className="mb-[20px] sm:mb-[50px]">
       {accordionList.map(
         ({ key, ariaLabel, title, answer }: AccordionInterface) => (
           <AccordionItem
