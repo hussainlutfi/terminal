@@ -2,9 +2,10 @@
 
 import { Accordion, AccordionItem } from "@nextui-org/accordion";
 import AccordionInterface from "../../../interfaces/accordion-interface";
+import { QAInterface } from "../../../interfaces/question";
 
 interface AccordionListProps {
-  accordionList: AccordionInterface[];
+  accordionList: QAInterface[];
 }
 
 export default function AccordionList({ accordionList }: AccordionListProps) {
@@ -24,14 +25,14 @@ export default function AccordionList({ accordionList }: AccordionListProps) {
   return (
     <Accordion className="mb-[20px] sm:mb-[50px]">
       {accordionList.map(
-        ({ key, ariaLabel, title, answer }: AccordionInterface) => (
+        (data: QAInterface) => (
           <AccordionItem
-            key={key}
-            aria-label={ariaLabel}
-            title={title}
+            key={data.id}
+            aria-label={""}
+            title={data.question}
             className="py-3 h text-xs font-extrabold text-white text-right hover:bg-white hover:bg-opacity-10   sm:text-xl"
           >
-            {splitter(answer)}
+            {splitter(data.answer)}
           </AccordionItem>
         )
       )}
