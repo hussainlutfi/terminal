@@ -29,7 +29,7 @@ export default function AccordionList({ accordionList }: AccordionListProps) {
           key={data.id}
           aria-label={""}
           title={<p className="text-right">{data.question}</p>}
-          className=" text-xs font-extrabold text-gray-300 sm:h-14 hover:bg-white hover:bg-opacity-10   sm:text-xl"
+          className="py-2 text-xs font-extrabold text-gray-300 sm:py-3 hover:bg-white hover:bg-opacity-10   sm:text-xl"
         >
           {splitter(data.answer)}
         </AccordionItem>
