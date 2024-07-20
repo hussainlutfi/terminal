@@ -6,6 +6,7 @@ import AccordionList from "../components/accordionList";
 import { Tajawal } from "next/font/google";
 import { getQuestions } from "../action";
 import Loader from "../components/loader";
+import LoaderStop from "../components/loader-stop";
 
 const tajawal = Tajawal({
   subsets: ["latin"],
@@ -99,7 +100,7 @@ export default function AfterPage() {
             <h1 className="text-white text-3xl mb-[20px] sm:text-6xl sm:mb-[45px] font-extrabold leading-normal sm:leading-tight tracking-tight text-center">
               بعد القبول !
             </h1>
-            {loading && <Loader />}
+            {loading ? <Loader /> : <LoaderStop />}
           </div>
 
           {!search ? (

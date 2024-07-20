@@ -32,7 +32,7 @@ export default function QuestionSquare() {
     }
   }
   return (
-    <div className="h-[250px] w-[90%] mt-[50px] sm:w-[350px] rounded-2xl bg-white bg-opacity-70 flex flex-col items-center justify-around p-3 mb-4 sm:mb-0">
+    <div className="h-[250px] w-[90%] mt-[50px] opacity-80 sm:w-[350px] rounded-2xl bg-white bg-opacity-70 flex flex-col items-center justify-around p-3 mb-4 sm:mb-0">
       <div>
         <h1 className="text-black text-1xl sm:text-2xl font-bold leading-normal sm:leading-tight tracking-tight text-center">
           عندك سؤال ما شفته ؟!
@@ -45,6 +45,7 @@ export default function QuestionSquare() {
         name="questionInput"
         type="text"
         value={question}
+        placeholder="ابسألك سؤال أخوك، الححين..."
         onChange={(e) => setQuestion(e.target.value)}
         className="w-full h-[40px] text-l text-black font-semibold p-4 rounded-lg bg-white bg-opacity-90"
       />
