@@ -32,7 +32,7 @@ export default function Other() {
           <h1 className="text-white opacity-75 text-4xl mb-14 sm:mb-24 sm:text-6xl font-extrabold leading-normal sm:leading-tight tracking-tight text-center">
             مسار التخصصات والفنون الأخرى
           </h1>
-          {isNotEmpty(majors!) && <MajorsList majorsList={majors!} />}
+          <MajorsList majorsList={majors!} />
         </div>
       </div>
     </main>
