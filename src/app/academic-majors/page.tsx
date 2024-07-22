@@ -1,7 +1,6 @@
 "use client";
-import HomeHeader from "../components/home/home-header";
+import Paths from "@/components/academic-majors/paths";
 import { Tajawal } from "next/font/google";
-import HomeSquares from "@/components/home/home-squares";
 
 const tajawal = Tajawal({
   subsets: ["latin"],
@@ -9,7 +8,8 @@ const tajawal = Tajawal({
   weight: "400",
 });
 
-export default function Home() {
+
+export default function Majors() {
   return (
     <main
       dir="rtl"
@@ -17,8 +17,10 @@ export default function Home() {
     >
       <div className="w-full bg-gradient-to-br from-[#51170e] to-[#031020] to-80%">
         <div className="flex flex-col items-center justify-center pt-16 sm:pt-16">
-          <HomeHeader />
-          <HomeSquares />
+          <h1 className="text-white opacity-75 text-4xl mb-7 sm:mb-12 sm:text-6xl font-extrabold leading-normal sm:leading-tight tracking-tight text-center">
+            التخصصات الأكاديمية
+          </h1>
+          <Paths />
         </div>
       </div>
     </main>

@@ -1,7 +1,8 @@
 "use client";
-import HomeHeader from "../components/home/home-header";
+import QuestionsSquares from "../../components/questions/question-squares";
+import QuestionInput from "../../components/questions/question-input";
 import { Tajawal } from "next/font/google";
-import HomeSquares from "@/components/home/home-squares";
+import QuestionHeader from "@/components/questions/questions-header";
 
 const tajawal = Tajawal({
   subsets: ["latin"],
@@ -17,8 +18,9 @@ export default function Home() {
     >
       <div className="w-full bg-gradient-to-br from-[#51170e] to-[#031020] to-80%">
         <div className="flex flex-col items-center justify-center pt-16 sm:pt-16">
-          <HomeHeader />
-          <HomeSquares />
+          <QuestionHeader />
+          <QuestionsSquares />
+          <QuestionInput />
         </div>
       </div>
     </main>

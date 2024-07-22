@@ -1,12 +1,12 @@
 "use server";
 
-import { QAInterface } from "../../interfaces/question";
-import { createClient } from "./../../utils/supabase/client";
+import { QAInterface } from "../../../interfaces/question";
+import { createClient } from "../../../utils/supabase/client";
 
-export async function EnterQuestion(question: string) {
+export async function EnterQuestion(question: string, sender_email: string) {
   const { data, error } = await createClient()
     .from("question-input")
-    .insert([{ question }])
+    .insert([{ question, sender_email }])
     .select();
 
   if (error) {

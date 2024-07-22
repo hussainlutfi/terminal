@@ -1,12 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { QAInterface } from "../../../interfaces/question";
-import AccordionList from "../components/accordionList";
+import { QAInterface } from "../../../../interfaces/question";
+import AccordionList from "../../../components/questions/accordionList";
 import { Tajawal } from "next/font/google";
 import { getQuestions } from "../action";
-import Loader from "../components/loader";
-import LoaderStop from "../components/loader-stop";
+import Loader from "../../../components/loader";
+import LoaderStop from "../../../components/loader-stop";
 
 const tajawal = Tajawal({
   subsets: ["latin"],
@@ -89,7 +89,7 @@ export default function AfterPage() {
       className={`flex min-h-screen min-w-full ${tajawal.className} font-sans`}
     >
       <div className="w-full bg-gradient-to-br from-[#51170e] to-[#031020] to-80%">
-        <div className="flex flex-col items-start justify-center px-5 pt-12 sm:pt-16">
+        <div className="flex flex-col opacity-80 items-start justify-center px-5 pt-12 sm:pt-16">
           <input
             className="bg-white bg-opacity-20 p-6 font-bold text-lg w-full h-[45px] rounded-xl mb-[20px]"
             placeholder="ابحث عن السؤال 🔍"
