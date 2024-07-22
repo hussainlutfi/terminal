@@ -12,3 +12,6 @@ export async function getMajors() {
   }
   return data as AcademicMajorsInterface[];
 }
+
+export const isNotEmpty = (list: AcademicMajorsInterface[]) =>
+  list && list.length > 0;

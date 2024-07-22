@@ -3,6 +3,7 @@ import { Tajawal } from "next/font/google";
 import { useEffect, useState } from "react";
 import { AcademicMajorsInterface } from "../../../../interfaces/major";
 import { getMajors } from "./action";
+import MajorsList from "@/components/academic-majors/majors-list";
 
 const tajawal = Tajawal({
   subsets: ["latin"],
@@ -30,6 +31,7 @@ export default function KBS() {
           <h1 className="text-white opacity-75 text-4xl mb-14 sm:mb-24 sm:text-6xl font-extrabold leading-normal sm:leading-tight tracking-tight text-center">
             المسار الهندسي
           </h1>
+          <MajorsList majorsList={majors!} />
         </div>
       </div>
     </main>
