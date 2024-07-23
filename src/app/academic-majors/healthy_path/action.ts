@@ -15,7 +15,7 @@ export async function getMajors() {
 
 export async function getMajor(id: string) {
   const { data, error } = await supabase
-    .from("healthy_path_views")
+    .from("healthy_path_view")
     .select("*")
     .eq("id", id);
   if (error) {
