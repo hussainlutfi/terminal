@@ -1,5 +1,5 @@
 export interface AcademicMajorsInterface {
-  id: string;
+  id: number;
   major: string;
   url: string;
   path: string;
