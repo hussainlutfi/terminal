@@ -12,3 +12,10 @@ export interface AcademicPaths {
   button: string;
   route: string;
 }
+
+export interface QuestionMajorInput {
+  question: string;
+  email: string;
+  major: string;
+  name: string;
+}

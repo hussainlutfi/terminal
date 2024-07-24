@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { AcademicMajorsInterface } from "../../../../../interfaces/major";
 import { getMajor } from "../action";
 import { Tajawal } from "next/font/google";
+import FormInput from "@/components/academic-majors/form-input";
 
 const tajawal = Tajawal({
   subsets: ["latin"],
@@ -46,6 +47,10 @@ export default function SinceMajor({ params }: { params: { id: string } }) {
               allowFullScreen
             ></iframe>
           </div>
+          <h1 className="self-start px-10 text-white opacity-75 text-2xl mb-4 sm:mb-8 sm:text-4xl font-extrabold leading-normal sm:leading-tight tracking-tight text-center">
+            الأسئلة الشائعة حول التخصص
+          </h1>
+          <FormInput major={major?.major!} />
         </div>
       </div>
     </main>
