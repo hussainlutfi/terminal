@@ -20,7 +20,7 @@ export default function FormInput({ major }: MajorInput) {
       name: name!,
       question: question!,
     };
-    EnterQuestion(input);
+    await EnterQuestion(input);
     Swal.fire({
       position: "center",
       icon: "success",
@@ -37,7 +37,7 @@ export default function FormInput({ major }: MajorInput) {
     <form className="justify-start w-full p-8 sm:flex" onSubmit={handleSubmit}>
       <div className="mt-3">
         <label
-          className="block text-white font-bold mb-2 pr-3"
+          className="block text-xs sm:text-base text-white font-bold mb-2 pr-3"
           htmlFor="question"
         >
           الاسم
@@ -45,7 +45,7 @@ export default function FormInput({ major }: MajorInput) {
         <input
           type="text"
           id="question"
-          className="w-[300px] p-2 bg-white bg-opacity-20 text-white rounded-md"
+          className="w-[300px] p-2 text-xs sm:text-base bg-white bg-opacity-20 text-white rounded-md"
           required
           placeholder="محمد علي"
           value={name}
@@ -54,7 +54,7 @@ export default function FormInput({ major }: MajorInput) {
       </div>
       <div className="mt-3 sm:mr-8">
         <label
-          className="block text-white font-bold mb-2 pr-3"
+          className="block text-xs sm:text-base text-white font-bold mb-2 pr-3"
           htmlFor="question"
         >
           الإيميل
@@ -62,7 +62,7 @@ export default function FormInput({ major }: MajorInput) {
         <input
           type="text"
           id="question"
-          className="w-[300px] p-2 bg-white bg-opacity-20 text-white rounded-md"
+          className="w-[300px]  p-2 text-xs sm:text-base bg-white bg-opacity-20 text-white rounded-md"
           placeholder="example@mostaqbli.com"
           required
           value={email}
@@ -71,7 +71,7 @@ export default function FormInput({ major }: MajorInput) {
       </div>
       <div className="mt-3 sm:mr-8">
         <label
-          className="block text-white font-bold mb-2 pr-3"
+          className="block text-xs sm:text-base text-white font-bold mb-2 pr-3"
           htmlFor="question"
         >
           السؤال
@@ -79,7 +79,7 @@ export default function FormInput({ major }: MajorInput) {
         <input
           type="text"
           id="question"
-          className="w-[300px] p-2 bg-white bg-opacity-20 text-white rounded-md"
+          className="w-[300px] p-2 text-xs sm:text-base bg-white bg-opacity-20 text-white rounded-md"
           required
           value={question}
           placeholder="هل التخصص...؟"
@@ -88,7 +88,7 @@ export default function FormInput({ major }: MajorInput) {
       </div>
       <button
         type="submit"
-        className="w-[200px] h-1/2 p-2 bg-blue-500 text-white font-bold rounded-md self-end mt-3 sm:mr-8"
+        className="w-[300px] sm:w-[200px] h-1/2 p-2 bg-blue-500 text-white font-bold rounded-md  mt-3 sm:mr-8 self-end"
       >
         أرسل
       </button>

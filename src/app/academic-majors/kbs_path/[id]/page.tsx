@@ -5,6 +5,7 @@ import { AcademicMajorsInterface } from "../../../../../interfaces/major";
 import { getMajor } from "../action";
 import { Tajawal } from "next/font/google";
 import FormInput from "@/components/academic-majors/form-input";
+import MajorQAs from "@/components/academic-majors/major-questions";
 
 const tajawal = Tajawal({
   subsets: ["latin"],
@@ -38,7 +39,7 @@ export default function SinceMajor({ params }: { params: { id: string } }) {
           <h1 className="text-white opacity-75 text-4xl mb-7 sm:mb-12 sm:text-6xl font-extrabold leading-normal sm:leading-tight tracking-tight text-center">
             {major?.major}
           </h1>
-          <div className="flex border-4 border-white border-opacity-20 rounded-xl p-5 h-[195px] w-[320px] sm:h-[330px] sm:w-[560px] ">
+          <div className="flex border-4 mb-8 sm:mb-16 border-white border-opacity-20 rounded-xl p-5 h-[195px] w-[320px] sm:h-[330px] sm:w-[560px] ">
             <iframe
               src={getEmbedUrl(major?.url!)}
               title="YouTube video player"
@@ -50,6 +51,7 @@ export default function SinceMajor({ params }: { params: { id: string } }) {
           <h1 className="self-start px-10 text-white opacity-75 text-2xl mb-4 sm:mb-8 sm:text-4xl font-extrabold leading-normal sm:leading-tight tracking-tight text-center">
             الأسئلة الشائعة حول التخصص
           </h1>
+          <MajorQAs major={major?.major!} />
           <FormInput major={major?.major!} />
         </div>
       </div>

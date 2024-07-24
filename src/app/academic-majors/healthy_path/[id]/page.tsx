@@ -7,6 +7,7 @@ import { Tajawal } from "next/font/google";
 import image from "./../../../../../assets/icons8-tv-256.png";
 import Image from "next/image";
 import FormInput from "@/components/academic-majors/form-input";
+import MajorQAs from "@/components/academic-majors/major-questions";
 
 const tajawal = Tajawal({
   subsets: ["latin"],
@@ -53,6 +54,7 @@ export default function SinceMajor({ params }: { params: { id: string } }) {
           <h1 className="self-start px-10 text-white opacity-75 text-2xl mb-4 sm:mb-8 sm:text-4xl font-extrabold leading-normal sm:leading-tight tracking-tight text-center">
             الأسئلة الشائعة حول التخصص
           </h1>
+          <MajorQAs major={major?.major!} />
           <FormInput major={major?.major!} />
         </div>
       </div>
