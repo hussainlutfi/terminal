@@ -16,7 +16,7 @@ export default function MajorsList({ majorsList = [] }: MajorsListProps) {
     <>
       {majorsList.map((data: AcademicMajorsInterface, index) => (
         <div
-          className="flex w-full py-3 px-2 text-2xl border-b sm:text-3xl sm:py-5 sm:px-3 hover:bg-white hover:bg-opacity-15"
+          className="flex w-full py-3 px-2 text-2xl text-white border-b sm:text-3xl sm:py-5 sm:px-3 hover:bg-white hover:bg-opacity-15"
           key={index}
           onClick={() => handelClick(data.id)}
         >
