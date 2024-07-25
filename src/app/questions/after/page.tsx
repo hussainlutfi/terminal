@@ -7,6 +7,8 @@ import { Tajawal } from "next/font/google";
 import { getQuestions } from "../action";
 import Loader from "../../../components/loader";
 import LoaderStop from "../../../components/loader-stop";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const tajawal = Tajawal({
   subsets: ["latin"],
@@ -29,6 +31,9 @@ export default function AfterPage() {
 
   useEffect(() => {
     getQuestionsAsync();
+    AOS.init({
+      duration: 800,
+    });
   }, []);
 
   useEffect(() => {
@@ -89,14 +94,15 @@ export default function AfterPage() {
       className={`flex min-h-screen min-w-full ${tajawal.className} font-sans`}
     >
       <div className="w-full bg-gradient-to-br from-[#51170e] to-[#031020] to-80%">
-        <div className="flex flex-col opacity-80 items-start justify-center px-5 pt-12 sm:pt-16">
+        <div className="flex flex-col opacity-80 items-start justify-center px-3 sm:px-5 pt-12 sm:pt-16">
           <input
+            data-aos="fade-up"
             className="bg-white bg-opacity-20 p-6 font-bold text-lg w-full h-[45px] rounded-xl mb-[20px]"
             placeholder="ابحث عن السؤال 🔍"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
-          <div className="flex items-center">
+          <div data-aos="fade-up" className="flex items-center">
             <h1 className="text-white text-3xl mb-[20px] sm:text-6xl sm:mb-[45px] font-extrabold leading-normal sm:leading-tight tracking-tight text-center">
               بعد القبول !
             </h1>
@@ -107,7 +113,10 @@ export default function AfterPage() {
             <>
               {isNotEmpty(lugha) && (
                 <>
-                  <h1 className="text-gray-100 text-xl mb-1 sm:text-4xl sm:mb-[10px] font-semibold leading-normal sm:leading-tight tracking-tight text-center">
+                  <h1
+                    data-aos="fade-up"
+                    className="text-gray-100 text-xl mb-1 sm:text-4xl sm:mb-[10px] font-semibold leading-normal sm:leading-tight tracking-tight text-center"
+                  >
                     اللغة
                   </h1>
                   <AccordionList accordionList={lugha} />
@@ -115,7 +124,10 @@ export default function AfterPage() {
               )}
               {isNotEmpty(tahdiri) && (
                 <>
-                  <h1 className="text-gray-100 text-xl mb-1 sm:text-4xl sm:mb-[10px] font-semibold leading-normal sm:leading-tight tracking-tight text-center">
+                  <h1
+                    data-aos="fade-up"
+                    className="text-gray-100 text-xl mb-1 sm:text-4xl sm:mb-[10px] font-semibold leading-normal sm:leading-tight tracking-tight text-center"
+                  >
                     التحضيري
                   </h1>
                   <AccordionList accordionList={tahdiri} />
@@ -123,7 +135,10 @@ export default function AfterPage() {
               )}
               {isNotEmpty(entisab_taalum) && (
                 <>
-                  <h1 className="text-gray-100 text-xl mb-1 sm:text-4xl sm:mb-[10px] font-semibold leading-normal sm:leading-tight tracking-tight text-center">
+                  <h1
+                    data-aos="fade-up"
+                    className="text-gray-100 text-xl mb-1 sm:text-4xl sm:mb-[10px] font-semibold leading-normal sm:leading-tight tracking-tight text-center"
+                  >
                     الانتساب والتعلم عن بعد
                   </h1>
                   <AccordionList accordionList={entisab_taalum} />
@@ -131,7 +146,10 @@ export default function AfterPage() {
               )}
               {isNotEmpty(ekhtebarat_baad_qobul) && (
                 <>
-                  <h1 className="text-gray-100 text-xl mb-1 sm:text-4xl sm:mb-[10px] font-semibold leading-normal sm:leading-tight tracking-tight text-center">
+                  <h1
+                    data-aos="fade-up"
+                    className="text-gray-100 text-xl mb-1 sm:text-4xl sm:mb-[10px] font-semibold leading-normal sm:leading-tight tracking-tight text-center"
+                  >
                     اختبارات بعد القبول
                   </h1>
                   <AccordionList accordionList={ekhtebarat_baad_qobul} />
@@ -139,7 +157,10 @@ export default function AfterPage() {
               )}
               {isNotEmpty(raghbat_takhsis_taskin) && (
                 <>
-                  <h1 className="text-gray-100 text-xl mb-1 sm:text-4xl sm:mb-[10px] font-semibold leading-normal sm:leading-tight tracking-tight text-center">
+                  <h1
+                    data-aos="fade-up"
+                    className="text-gray-100 text-xl mb-1 sm:text-4xl sm:mb-[10px] font-semibold leading-normal sm:leading-tight tracking-tight text-center"
+                  >
                     اسئلة الرغبات والتخصيص والتسكين
                   </h1>
                   <AccordionList accordionList={raghbat_takhsis_taskin} />
@@ -147,7 +168,10 @@ export default function AfterPage() {
               )}
               {isNotEmpty(seha_nafsia) && (
                 <>
-                  <h1 className="text-gray-100 text-xl mb-1 sm:text-4xl sm:mb-[10px] font-semibold leading-normal sm:leading-tight tracking-tight text-center">
+                  <h1
+                    data-aos="fade-up"
+                    className="text-gray-100 text-xl mb-1 sm:text-4xl sm:mb-[10px] font-semibold leading-normal sm:leading-tight tracking-tight text-center"
+                  >
                     الصحة النفسية
                   </h1>
                   <AccordionList accordionList={seha_nafsia} />
@@ -155,7 +179,10 @@ export default function AfterPage() {
               )}
               {isNotEmpty(akhra) && (
                 <>
-                  <h1 className="text-gray-100 text-xl mb-1 sm:text-4xl sm:mb-[10px] font-semibold leading-normal sm:leading-tight tracking-tight text-center">
+                  <h1
+                    data-aos="fade-up"
+                    className="text-gray-100 text-xl mb-1 sm:text-4xl sm:mb-[10px] font-semibold leading-normal sm:leading-tight tracking-tight text-center"
+                  >
                     أخرى
                   </h1>
                   <AccordionList accordionList={akhra} />
@@ -164,7 +191,10 @@ export default function AfterPage() {
             </>
           ) : (
             <>
-              <h1 className="text-gray-100 text-xl mb-[5px] sm:text-4xl sm:mb-[20px] font-semibold leading-normal sm:leading-tight tracking-tight text-center">
+              <h1
+                data-aos="fade-up"
+                className="text-gray-100 text-xl mb-[5px] sm:text-4xl sm:mb-[20px] font-semibold leading-normal sm:leading-tight tracking-tight text-center"
+              >
                 نتائج البحث: {search}
               </h1>
               <AccordionList accordionList={filtered} />
