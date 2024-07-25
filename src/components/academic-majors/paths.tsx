@@ -3,7 +3,8 @@
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { paths } from "../../../data/paths-page";
-
+import AOS from "aos";
+import "aos/dist/aos.css";
 export default function Paths() {
   const router = useRouter();
 
@@ -15,6 +16,9 @@ export default function Paths() {
     router.prefetch("/academic-majors/kbs_path");
     router.prefetch("/academic-majors/science_path");
     router.prefetch("/academic-majors/others_path");
+    AOS.init({
+      duration: 800,
+    });
   }, [router]);
 
   const handleNavigation = (path: string) => {
@@ -25,9 +29,10 @@ export default function Paths() {
       {paths.map((path, index) => (
         <div
           key={index}
+          data-aos={index % 2 === 0 ? 'fade-right':'fade-left'}
           className={`flex ${
             index % 2 === 0 ? "justify-start" : "justify-end"
-          } mb-7 sm:mb-14 pb-10 border-b-2 sm:pb-20 border-white border-opacity-20`}
+          } mb-7 sm:mb-14 pb-10  sm:pb-20 border-opacity-20`}
         >
           <div className="sm:w-1/2">
             <div className="flex justify-center mb-3">

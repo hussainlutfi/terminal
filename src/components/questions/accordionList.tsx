@@ -2,16 +2,24 @@
 
 import { Accordion, AccordionItem } from "@nextui-org/accordion";
 import { QAInterface } from "../../../interfaces/question";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
 
 interface AccordionListProps {
   accordionList: QAInterface[];
 }
 
 export default function AccordionList({ accordionList }: AccordionListProps) {
+  useEffect(() => {
+    AOS.init({
+      duration: 800,
+    });
+  }, []);
   function splitter(answer: string): JSX.Element {
     const lines = answer.split(/\r?\n/).filter((line) => line.trim() !== "");
     return (
-      <div className=" font-normal text-gray-100 px-[15px]">
+      <div data-aos="fade-up" className=" font-normal text-gray-100 px-[15px]">
         {lines.map((line, index) => (
           <p className="mt-1 " key={index}>
             {line}
