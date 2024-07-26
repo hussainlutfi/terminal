@@ -21,7 +21,7 @@ export default function MajorsList({ majorsList = [] }: MajorsListProps) {
     router.push(`${path}/${id}`);
   }
   return (
-    <>
+    <div className="w-full pb-24">
       {majorsList.map((data: AcademicMajorsInterface, index) => (
         <div
           data-aos="fade-up"
@@ -32,6 +32,6 @@ export default function MajorsList({ majorsList = [] }: MajorsListProps) {
           {data.major}
         </div>
       ))}
-    </>
+    </div>
   );
 }

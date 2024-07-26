@@ -9,6 +9,7 @@ import Loader from "../../../components/loader";
 import LoaderStop from "../../../components/loader-stop";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { beforeTitles } from "../../../../data/titles";
 
 const tajawal = Tajawal({
   subsets: ["latin"],
@@ -18,17 +19,12 @@ const tajawal = Tajawal({
 
 export default function BeforePage() {
   const [search, setSearch] = useState<string>("");
-  const [akhra, setAkhra] = useState<QAInterface[]>([]);
-  const [ebtiaath, setEbtiaath] = useState<QAInterface[]>([]);
-  const [ekhtebarat, setEkhtebarat] = useState<QAInterface[]>([]);
-  const [mostalahat, setMostalahat] = useState<QAInterface[]>([]);
-  const [mozona, setMozona] = useState<QAInterface[]>([]);
-  const [seha_nafsia, setSehaNafsia] = useState<QAInterface[]>([]);
+  const [questions, setQuestions] = useState<Record<string, QAInterface[]>>({});
   const [filtered, setFiltered] = useState<QAInterface[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    getQuestionsAsync();
+    fetchAllQuestions();
     AOS.init({
       duration: 800,
     });
@@ -36,33 +32,41 @@ export default function BeforePage() {
 
   useEffect(() => {
     filterAll();
-  }, [search, akhra, ebtiaath, ekhtebarat, mostalahat, mozona, seha_nafsia]);
+  }, [search, questions]);
 
-  async function getQuestionsAsync() {
+  const fetchAllQuestions = async () => {
     setLoading(true);
-    setMostalahat(await getQuestions("before", "mostalahat"));
-    setMozona(await getQuestions("before", "mozona"));
-    setEbtiaath(await getQuestions("before", "ebtiaath"));
-    setEkhtebarat(await getQuestions("before", "ekhtebarat"));
-    setSehaNafsia(await getQuestions("before", "seha_nafsia"));
-    setAkhra(await getQuestions("before", "akhra"));
+    try {
+      const types = Object.keys(beforeTitles);
+      const promises = types.map((type) => getQuestions("before", type));
+      const results = await Promise.all(promises);
+
+      const newQuestions: Record<string, QAInterface[]> = {};
+      types.forEach((type, index) => {
+        newQuestions[type] = results[index];
+      });
+
+      setQuestions(newQuestions);
+    } catch (error) {
+      console.error("Error fetching questions:", error);
+    }
     setLoading(false);
-  }
+  };
 
   const filterArray = (array: QAInterface[], searchTerm: string) => {
     if (!searchTerm) return array;
-    if (!isNotEmpty(array)) return [];
-    return array.filter((item) => item.question.includes(searchTerm));
+    return array.filter((item) =>
+      item.question.toLowerCase().includes(searchTerm.toLowerCase())
+    );
   };
 
   const filterAll = () => {
     let filteredResults: QAInterface[] = [];
-    filteredResults = filteredResults.concat(filterArray(akhra, search));
-    filteredResults = filteredResults.concat(filterArray(ebtiaath, search));
-    filteredResults = filteredResults.concat(filterArray(ekhtebarat, search));
-    filteredResults = filteredResults.concat(filterArray(mostalahat, search));
-    filteredResults = filteredResults.concat(filterArray(seha_nafsia, search));
-    filteredResults = filteredResults.concat(filterArray(mozona, search));
+    Object.values(questions).forEach((questionArray) => {
+      filteredResults = filteredResults.concat(
+        filterArray(questionArray, search)
+      );
+    });
     setFiltered(filteredResults);
   };
 
@@ -71,9 +75,9 @@ export default function BeforePage() {
   return (
     <main
       dir="rtl"
-      className={`flex min-h-screen min-w-full  ${tajawal.className} font-sans`}
+      className={`flex min-h-screen min-w-full ${tajawal.className} font-sans`}
     >
-      <div className="w-full bg-gradient-to-br  from-[#51170e] to-[#031020] to-80%">
+      <div className="w-full bg-gradient-to-br from-[#51170e] to-[#031020] to-80%">
         <div className="flex flex-col items-start opacity-80 justify-center px-3 sm:px-5 pt-12 sm:pt-16">
           <input
             data-aos="fade-up"
@@ -89,74 +93,22 @@ export default function BeforePage() {
             {loading ? <Loader /> : <LoaderStop />}
           </div>
           {!search ? (
-            <>
-              {isNotEmpty(mostalahat) && (
-                <>
-                  <h1
-                    data-aos="fade-up"
-                    className="text-gray-100 text-xl mb-[5px] sm:text-4xl sm:mb-[20px] font-semibold leading-normal sm:leading-tight tracking-tight text-center"
-                  >
-                    المصطلحات
-                  </h1>
-                  <AccordionList accordionList={mostalahat} />
-                </>
+            <div className="pb-24 w-full">
+              {Object.entries(questions).map(
+                ([key, list]) =>
+                  isNotEmpty(list) && (
+                    <div key={key}>
+                      <h1
+                        data-aos="fade-up"
+                        className="text-gray-100 text-xl mb-[5px] sm:text-4xl sm:mb-[20px] font-semibold leading-normal sm:leading-tight tracking-tight text-right"
+                      >
+                        {beforeTitles[key]}
+                      </h1>
+                      <AccordionList accordionList={list} />
+                    </div>
+                  )
               )}
-              {isNotEmpty(mozona) && (
-                <>
-                  <h1
-                    data-aos="fade-up"
-                    className="text-gray-100 text-xl mb-[5px] sm:text-4xl sm:mb-[20px] font-semibold leading-normal sm:leading-tight tracking-tight text-center"
-                  >
-                    الموزونة
-                  </h1>
-                  <AccordionList accordionList={mozona} />
-                </>
-              )}
-              {isNotEmpty(ebtiaath) && (
-                <>
-                  <h1
-                    data-aos="fade-up"
-                    className="text-gray-100 text-xl mb-[5px] sm:text-4xl sm:mb-[20px] font-semibold leading-normal sm:leading-tight tracking-tight text-center"
-                  >
-                    الابتعاث
-                  </h1>
-                  <AccordionList accordionList={ebtiaath} />
-                </>
-              )}
-              {isNotEmpty(ekhtebarat) && (
-                <>
-                  <h1
-                    data-aos="fade-up"
-                    className="text-gray-100 text-xl mb-[5px] sm:text-4xl sm:mb-[20px] font-semibold leading-normal sm:leading-tight tracking-tight text-center"
-                  >
-                    الاختبارات
-                  </h1>
-                  <AccordionList accordionList={ekhtebarat} />
-                </>
-              )}
-              {isNotEmpty(seha_nafsia) && (
-                <>
-                  <h1
-                    data-aos="fade-up"
-                    className="text-gray-100 text-xl mb-[5px] sm:text-4xl sm:mb-[20px] font-semibold leading-normal sm:leading-tight tracking-tight text-center"
-                  >
-                    الصحة النفسية
-                  </h1>
-                  <AccordionList accordionList={seha_nafsia} />
-                </>
-              )}
-              {isNotEmpty(akhra) && (
-                <>
-                  <h1
-                    data-aos="fade-up"
-                    className="text-gray-100 text-xl mb-[5px] sm:text-4xl sm:mb-[20px] font-semibold leading-normal sm:leading-tight tracking-tight text-center"
-                  >
-                    أخرى
-                  </h1>
-                  <AccordionList accordionList={akhra} />
-                </>
-              )}
-            </>
+            </div>
           ) : (
             <>
               <h1

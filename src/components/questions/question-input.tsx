@@ -32,12 +32,12 @@ export default function QuestionInput() {
     }
   }
   return (
-    <div className="h-[300px] w-[90%] mt-[25px]  opacity-75 sm:w-[350px] rounded-2xl bg-white bg-opacity-70 flex flex-col items-center justify-around p-3 mb-4 sm:mb-0">
+    <div className="h-[250px] w-[75%] mt-[25px]  opacity-75 sm:w-[350px] sm:h-[300px] rounded-2xl bg-white bg-opacity-70 flex flex-col items-center justify-around p-3 mb-4 sm:mb-0">
       <div>
-        <h1 className="text-black text-1xl sm:text-2xl font-bold leading-normal sm:leading-tight tracking-tight text-center">
+        <h1 className="text-black  sm:text-2xl font-bold leading-normal sm:leading-tight tracking-tight text-center">
           عندك سؤال ما شفته ؟!
         </h1>
-        <h1 className="text-black text-base sm:text-lg  leading-normal sm:leading-tight tracking-tight text-center">
+        <h1 className="text-black text-sm sm:text-lg  leading-normal sm:leading-tight tracking-tight text-center">
           اقترحه هنا وإن شاء الله نضيفه ونجاوب عليه!
         </h1>
       </div>
@@ -47,24 +47,20 @@ export default function QuestionInput() {
         value={question}
         placeholder="هل الجامعة ... ؟"
         onChange={(e) => setQuestion(e.target.value)}
-        className="w-full h-[40px] text-l text-black font-semibold p-4 rounded-lg bg-white bg-opacity-90"
+        className="w-full p-2 text-xs sm:text-base bg-white mt-2 sm:mt-5  text-black rounded-md"
       />
       <div className=" w-full mb-3">
-        <div className="flex ">
-          <h1 className="text-black font-extrabold p-2 text-right sm:text-lg  leading-normal sm:leading-tight tracking-tight">
-            الإيميل
-          </h1>
-          <h1 className="text-black  pr-1 pt-[10px] text-right text-sm sm:text-base  leading-normal sm:leading-tight tracking-tight">
-            ليصلك اشعار حول سؤالك
-          </h1>
-        </div>
+        <h1 className="text-black font-extrabold  p-2 text-right text-sm sm:text-base  leading-normal sm:leading-tight tracking-tight">
+          الإيميل
+        </h1>
+
         <input
           name="questionInput"
           type="email"
           value={email}
           placeholder="example@terminal.com"
           onChange={(e) => setEmail(e.target.value)}
-          className="w-full h-[40px] text-l text-black font-semibold p-4 rounded-lg bg-white bg-opacity-90"
+          className="w-full p-2 text-xs sm:text-base bg-white text-black rounded-md"
         />
       </div>
       <button

@@ -25,7 +25,7 @@ export default function QuestionsSquares() {
           className="bg-white  h-[40%] w-[90%] rounded-3xl text-black text-1xl sm:text-2xl font-extrabold leading-normal sm:leading-tight tracking-tight text-center hover:bg-gray-200"
           onClick={() => handleNavigation("/questions/before")}
         >
-          لنرى 🔥
+          اكتشف
         </button>
       </div>
       <div className="h-[150px] w-full  sm:w-[350px] rounded-2xl border-white border-2 border-opacity-50 flex flex-col items-center justify-around p-3">
@@ -36,7 +36,7 @@ export default function QuestionsSquares() {
           className="bg-white h-[40%] w-[90%] rounded-3xl text-black text-1xl sm:text-2xl font-extrabold leading-normal sm:leading-tight tracking-tight text-center hover:bg-gray-200"
           onClick={() => handleNavigation("/questions/after")}
         >
-          لننظر 🫣
+          اكتشف
         </button>
       </div>
     </div>

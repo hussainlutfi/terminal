@@ -8,7 +8,6 @@ const tajawal = Tajawal({
   weight: "400",
 });
 
-
 export default function Majors() {
   return (
     <main
@@ -17,8 +16,11 @@ export default function Majors() {
     >
       <div className="w-full bg-gradient-to-br from-[#51170e] to-[#031020] to-80%">
         <div className="flex flex-col items-center justify-center pt-16 sm:pt-16">
-          <h1 className="text-white opacity-75 text-4xl mb-7 sm:mb-12 sm:text-6xl font-extrabold leading-normal sm:leading-tight tracking-tight text-center">
+          <h1 className="text-white opacity-75 text-4xl mb-2 sm:mb-6 sm:text-6xl font-extrabold leading-normal sm:leading-tight tracking-tight text-center">
             التخصصات الأكاديمية
+          </h1>
+          <h1 className="text-white opacity-75 text-2xl mb-7 sm:mb-12 sm:text-4xl  leading-normal sm:leading-tight tracking-tight text-center">
+            مستقبلك المشرق يبدأ هنا 
           </h1>
           <Paths />
         </div>

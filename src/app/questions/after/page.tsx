@@ -9,6 +9,7 @@ import Loader from "../../../components/loader";
 import LoaderStop from "../../../components/loader-stop";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { afterTitles } from "../../../../data/titles";
 
 const tajawal = Tajawal({
   subsets: ["latin"],
@@ -19,47 +20,39 @@ const tajawal = Tajawal({
 export default function AfterPage() {
   const [search, setSearch] = useState<string>("");
 
-  const [akhra, setAkhra] = useState<QAInterface[]>([]);
-  const [ekhtebarat_baad_qobul, setEkhtebarat] = useState<QAInterface[]>([]);
-  const [entisab_taalum, setEntisabTaalumt] = useState<QAInterface[]>([]);
-  const [lugha, setLugha] = useState<QAInterface[]>([]);
-  const [raghbat_takhsis_taskin, setRaghbat] = useState<QAInterface[]>([]);
-  const [seha_nafsia, setSehaNafsia] = useState<QAInterface[]>([]);
-  const [tahdiri, setTahdiri] = useState<QAInterface[]>([]);
+  const [questions, setQuestions] = useState<Record<string, QAInterface[]>>({});
   const [filtered, setFiltered] = useState<QAInterface[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    getQuestionsAsync();
+    fetchAllQuestions();
     AOS.init({
-      duration: 800,
+      duration: 500,
     });
   }, []);
 
   useEffect(() => {
     filterAll();
-  }, [
-    search,
-    akhra,
-    ekhtebarat_baad_qobul,
-    entisab_taalum,
-    lugha,
-    raghbat_takhsis_taskin,
-    seha_nafsia,
-    tahdiri,
-  ]);
+  }, [search, questions]);
 
-  async function getQuestionsAsync() {
+  const fetchAllQuestions = async () => {
     setLoading(true);
-    setLugha(await getQuestions("after", "lugha"));
-    setTahdiri(await getQuestions("after", "tahdiri"));
-    setEntisabTaalumt(await getQuestions("after", "entisab_taalum"));
-    setEkhtebarat(await getQuestions("after", "ekhtebarat_baad_qobul"));
-    setRaghbat(await getQuestions("after", "raghbat_takhsis_taskin"));
-    setSehaNafsia(await getQuestions("after", "seha_nafsia"));
-    setAkhra(await getQuestions("after", "akhra"));
+    try {
+      const types = Object.keys(afterTitles);
+      const promises = types.map((type) => getQuestions("after", type));
+      const results = await Promise.all(promises);
+
+      const newQuestions: Record<string, QAInterface[]> = {};
+      types.forEach((type, index) => {
+        newQuestions[type] = results[index];
+      });
+
+      setQuestions(newQuestions);
+    } catch (error) {
+      console.error("Error fetching questions:", error);
+    }
     setLoading(false);
-  }
+  };
 
   const filterArray = (array: QAInterface[], searchTerm: string) => {
     if (!searchTerm) return array;
@@ -70,19 +63,11 @@ export default function AfterPage() {
 
   const filterAll = () => {
     let filteredResults: QAInterface[] = [];
-    filteredResults = filteredResults.concat(filterArray(akhra, search));
-    filteredResults = filteredResults.concat(
-      filterArray(ekhtebarat_baad_qobul, search)
-    );
-    filteredResults = filteredResults.concat(
-      filterArray(entisab_taalum, search)
-    );
-    filteredResults = filteredResults.concat(filterArray(lugha, search));
-    filteredResults = filteredResults.concat(
-      filterArray(raghbat_takhsis_taskin, search)
-    );
-    filteredResults = filteredResults.concat(filterArray(seha_nafsia, search));
-    filteredResults = filteredResults.concat(filterArray(tahdiri, search));
+    Object.values(questions).forEach((questionArray) => {
+      filteredResults = filteredResults.concat(
+        filterArray(questionArray, search)
+      );
+    });
     setFiltered(filteredResults);
   };
 
@@ -110,85 +95,22 @@ export default function AfterPage() {
           </div>
 
           {!search ? (
-            <>
-              {isNotEmpty(lugha) && (
-                <>
-                  <h1
-                    data-aos="fade-up"
-                    className="text-gray-100 text-xl mb-1 sm:text-4xl sm:mb-[10px] font-semibold leading-normal sm:leading-tight tracking-tight text-center"
-                  >
-                    اللغة
-                  </h1>
-                  <AccordionList accordionList={lugha} />
-                </>
+            <div className="pb-24 w-full">
+              {Object.entries(questions).map(
+                ([key, list]) =>
+                  isNotEmpty(list) && (
+                    <div key={key}>
+                      <h1
+                        data-aos="fade-up"
+                        className="text-gray-100 text-xl mb-1 sm:text-4xl sm:mb-[10px] font-semibold leading-normal sm:leading-tight tracking-tight text-right"
+                      >
+                        {afterTitles[key]}
+                      </h1>
+                      <AccordionList accordionList={list} />
+                    </div>
+                  )
               )}
-              {isNotEmpty(tahdiri) && (
-                <>
-                  <h1
-                    data-aos="fade-up"
-                    className="text-gray-100 text-xl mb-1 sm:text-4xl sm:mb-[10px] font-semibold leading-normal sm:leading-tight tracking-tight text-center"
-                  >
-                    التحضيري
-                  </h1>
-                  <AccordionList accordionList={tahdiri} />
-                </>
-              )}
-              {isNotEmpty(entisab_taalum) && (
-                <>
-                  <h1
-                    data-aos="fade-up"
-                    className="text-gray-100 text-xl mb-1 sm:text-4xl sm:mb-[10px] font-semibold leading-normal sm:leading-tight tracking-tight text-center"
-                  >
-                    الانتساب والتعلم عن بعد
-                  </h1>
-                  <AccordionList accordionList={entisab_taalum} />
-                </>
-              )}
-              {isNotEmpty(ekhtebarat_baad_qobul) && (
-                <>
-                  <h1
-                    data-aos="fade-up"
-                    className="text-gray-100 text-xl mb-1 sm:text-4xl sm:mb-[10px] font-semibold leading-normal sm:leading-tight tracking-tight text-center"
-                  >
-                    اختبارات بعد القبول
-                  </h1>
-                  <AccordionList accordionList={ekhtebarat_baad_qobul} />
-                </>
-              )}
-              {isNotEmpty(raghbat_takhsis_taskin) && (
-                <>
-                  <h1
-                    data-aos="fade-up"
-                    className="text-gray-100 text-xl mb-1 sm:text-4xl sm:mb-[10px] font-semibold leading-normal sm:leading-tight tracking-tight text-center"
-                  >
-                    اسئلة الرغبات والتخصيص والتسكين
-                  </h1>
-                  <AccordionList accordionList={raghbat_takhsis_taskin} />
-                </>
-              )}
-              {isNotEmpty(seha_nafsia) && (
-                <>
-                  <h1
-                    data-aos="fade-up"
-                    className="text-gray-100 text-xl mb-1 sm:text-4xl sm:mb-[10px] font-semibold leading-normal sm:leading-tight tracking-tight text-center"
-                  >
-                    الصحة النفسية
-                  </h1>
-                  <AccordionList accordionList={seha_nafsia} />
-                </>
-              )}
-              {isNotEmpty(akhra) && (
-                <>
-                  <h1
-                    data-aos="fade-up"
-                    className="text-gray-100 text-xl mb-1 sm:text-4xl sm:mb-[10px] font-semibold leading-normal sm:leading-tight tracking-tight text-center"
-                  >
-                    أخرى
-                  </h1>
-                  <AccordionList accordionList={akhra} />
-                </>
-              )}
-            </>
+            </div>
           ) : (
             <>
               <h1

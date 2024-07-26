@@ -6,10 +6,8 @@ export interface AcademicMajorsInterface {
 }
 
 export interface AcademicPaths {
+  svg: string;
   name: string;
-  emoji: string;
-  description: string;
-  button: string;
   route: string;
 }
 

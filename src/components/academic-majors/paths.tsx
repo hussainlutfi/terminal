@@ -5,6 +5,8 @@ import { useEffect } from "react";
 import { paths } from "../../../data/paths-page";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import "@fortawesome/fontawesome-free/css/all.min.css";
+
 export default function Paths() {
   const router = useRouter();
 
@@ -24,35 +26,32 @@ export default function Paths() {
   const handleNavigation = (path: string) => {
     router.push(path);
   };
+
   return (
-    <div className="w-10/12 sm:w-3/4 pt-7 sm:pt-12 border-t-4 border-opacity-50 border-white">
+    <div className="w-10/12 sm:w-3/4 pt-7 sm:pt-12 border-t-4 border-opacity-50 border-white mx-auto overflow-hidden ">
       {paths.map((path, index) => (
         <div
           key={index}
-          data-aos={index % 2 === 0 ? 'fade-right':'fade-left'}
+          data-aos={index % 2 === 0 ? "fade-right" : "fade-left"}
           className={`flex ${
             index % 2 === 0 ? "justify-start" : "justify-end"
-          } mb-7 sm:mb-14 pb-10  sm:pb-20 border-opacity-20`}
+          } pb-6 sm:pb-12 border-opacity-20 `}
         >
-          <div className="sm:w-1/2">
-            <div className="flex justify-center mb-3">
-              <h1 className="text-white opacity-80 text-2xl sm:text-4xl font-extrabold text-center">
-                {path.name}
-              </h1>
-              <h1 className="text-white opacity-80 text-4xl sm:text-6xl animate-bounce font-extrabold text-center">
-                {path.emoji}
+          <div
+            onClick={() => handleNavigation(path.route)}
+            className="sm:w-1/2 w-full px-3 rounded-3xl  hover:bg-white hover:bg-opacity-20"
+          >
+            <div className="transition ease-in-out delay-150 hover:scale-105">
+              <img
+                src={path.svg}
+                alt="About services"
+                className="w-[200px] lg:w-[270px] mx-auto  "
+              />
+              <h1 className="text-white opacity-80  text-2xl sm:text-4xl font-extrabold text-center ">
+                {path.name} <i className="fas fa-arrow-left"></i>
               </h1>
             </div>
-            <h1 className="text-white opacity-75 sm:text-2xl text-center">
-              {path.description}
-            </h1>
-            <div className="flex justify-center mt-5 ">
-              <button
-                className="bg-white  h-[45px] w-[200px] rounded-3xl text-black text-1xl sm:text-2xl font-extrabold leading-normal sm:leading-tight tracking-tight text-center hover:bg-gray-200"
-                onClick={() => handleNavigation(path.route)}
-              >
-                {path.button}
-              </button>
+            <div className="flex justify-center mt-5">
             </div>
           </div>
         </div>
