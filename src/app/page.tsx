@@ -2,6 +2,7 @@
 import HomeHeader from "../components/home/home-header";
 import { Tajawal } from "next/font/google";
 import HomeSquares from "@/components/home/home-squares";
+import "./globals.css";
 
 const tajawal = Tajawal({
   subsets: ["latin"],

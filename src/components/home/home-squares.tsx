@@ -30,7 +30,7 @@ export default function HomeSquares() {
           className="bg-white  h-[30%] w-[90%] rounded-3xl text-black text-1xl sm:text-2xl font-extrabold leading-normal sm:leading-tight tracking-tight text-center hover:bg-gray-200"
           onClick={() => handleNavigation("/questions")}
         >
-          لنبحر 🚢
+          اكتشف
         </button>
       </div>
       <div className="h-[200px] w-full sm:w-[350px] rounded-2xl border-white border-2 border-opacity-50 flex flex-col items-center justify-around p-3 mb-4 sm:mb-0">
@@ -46,7 +46,7 @@ export default function HomeSquares() {
           className="bg-white h-[30%] w-[90%] rounded-3xl text-black text-1xl sm:text-2xl font-extrabold leading-normal sm:leading-tight tracking-tight text-center hover:bg-gray-200"
           onClick={() => handleNavigation("/academic-majors")}
         >
-          لنقلع ✈️
+          اكتشف
         </button>
       </div>
     </div>
