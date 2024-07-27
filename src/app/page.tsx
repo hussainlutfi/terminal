@@ -25,7 +25,10 @@ export default function Home() {
       className={`flex min-h-screen min-w-full ${tajawal.className} font-sans`}
     >
       <div className="w-full bg-gradient-to-br from-[#51170e] to-[#031020] to-80%">
-        <div data-aos="fade-up" className="flex flex-col items-center justify-center pt-6">
+        <div
+          data-aos="fade-up"
+          className="flex flex-col items-center justify-center pt-6"
+        >
           <HomeHeader />
           <HomeSquares />
         </div>
