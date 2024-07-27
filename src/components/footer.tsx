@@ -2,7 +2,7 @@ import { InstagramLogoIcon, LinkedInLogoIcon } from "@radix-ui/react-icons";
 
 export default function Footer() {
   return (
-    <footer className="w-full py-8 border-t-2 border-white border-opacity-10 mt-28 ">
+    <footer className="w-full py-8 border-t-2 border-white border-opacity-10 mt-14 sm:mt-28 ">
       <div className="flex px-16 sm:px-96 mb-2 sm:mb-5">
         <a
           href="https://www.facebook.com/Mostaqbli"
