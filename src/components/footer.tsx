@@ -50,7 +50,7 @@ export default function Footer() {
         <span className="w-full px-5 sm:text-lg text-gray-500 text-center pt-3 font-bold">
           طوّر من قبل،{" "}
           <a
-            className="text-gray-400 hover:opacity-70"
+            className="text-gray-400 hover:opacity-70 underline"
             href="https://www.linkedin.com/in/hussainlutfi/"
           >
             حسين الزاير
