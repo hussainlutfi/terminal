@@ -2,7 +2,6 @@
 import HomeHeader from "../components/home/home-header";
 import { Tajawal } from "next/font/google";
 import HomeSquares from "@/components/home/home-squares";
-import "./globals.css";
 import { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";

@@ -3,7 +3,6 @@ import QuestionsSquares from "../../components/questions/question-squares";
 import QuestionInput from "../../components/questions/question-input";
 import { Tajawal } from "next/font/google";
 import QuestionHeader from "@/components/questions/questions-header";
-import "./../globals.css";
 
 
 const tajawal = Tajawal({
