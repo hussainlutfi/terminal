@@ -1,5 +1,6 @@
 "use client";
 import Paths from "@/components/academic-majors/paths";
+import Footer from "@/components/footer";
 import { Tajawal } from "next/font/google";
 
 const tajawal = Tajawal({
@@ -23,6 +24,8 @@ export default function Majors() {
             مستقبلك المشرق يبدأ هنا 
           </h1>
           <Paths />
+          <Footer/>
+
         </div>
       </div>
     </main>

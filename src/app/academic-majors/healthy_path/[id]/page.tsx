@@ -8,6 +8,7 @@ import image from "./../../../../../assets/icons8-tv-256.png";
 import Image from "next/image";
 import FormInput from "@/components/academic-majors/form-input";
 import MajorQAs from "@/components/academic-majors/major-questions";
+import Footer from "@/components/footer";
 
 const tajawal = Tajawal({
   subsets: ["latin"],
@@ -56,6 +57,7 @@ export default function SinceMajor({ params }: { params: { id: string } }) {
           </h1>
           <MajorQAs major={major?.major!} />
           <FormInput major={major?.major!} />
+          <Footer/>
         </div>
       </div>
     </main>

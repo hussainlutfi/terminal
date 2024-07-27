@@ -5,6 +5,7 @@ import HomeSquares from "@/components/home/home-squares";
 import { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import Footer from "@/components/footer";
 
 const tajawal = Tajawal({
   subsets: ["latin"],
@@ -30,6 +31,7 @@ export default function Home() {
         >
           <HomeHeader />
           <HomeSquares />
+          <Footer/>
         </div>
       </div>
     </main>
