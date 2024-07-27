@@ -16,7 +16,7 @@ export default function HomeSquares() {
     router.push(path);
   };
   return (
-    <div className="mt-[75px] w-[90%] opacity-75 sm:w-[75%] flex flex-col sm:flex-row justify-evenly">
+    <div className="mt-[25px] sm:mt-[50px] w-[90%] opacity-75 sm:w-[75%] flex flex-col sm:flex-row justify-evenly">
       <div className="h-[200px] w-full sm:w-[350px] rounded-2xl border-white border-2 border-opacity-50 flex flex-col items-center justify-around p-3 mb-4 sm:mb-0">
         <div>
           <h1 className="text-white text-2xl sm:text-3xl font-bold leading-normal sm:leading-tight tracking-tight text-center">

@@ -8,6 +8,7 @@ export const afterTitles: Record<string, string> = {
   akhra: "أخرى",
 };
 
+
 export const beforeTitles: Record<string, string> = {
   mostalahat: "المصطلحات",
   mozona: "الموزونة",

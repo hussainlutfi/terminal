@@ -4,12 +4,11 @@ import { useEffect, useState } from "react";
 import { QAInterface } from "../../../../interfaces/question";
 import AccordionList from "../../../components/questions/accordionList";
 import { Tajawal } from "next/font/google";
-import { getQuestions } from "../action";
 import Loader from "../../../components/loader";
 import LoaderStop from "../../../components/loader-stop";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { afterTitles } from "../../../../data/titles";
+import { getQAAfter } from "../action";
 
 const tajawal = Tajawal({
   subsets: ["latin"],
@@ -25,7 +24,7 @@ export default function AfterPage() {
   const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    fetchAllQuestions();
+    getRecords();
     AOS.init({
       duration: 500,
     });
@@ -35,24 +34,11 @@ export default function AfterPage() {
     filterAll();
   }, [search, questions]);
 
-  const fetchAllQuestions = async () => {
+  async function getRecords() {
     setLoading(true);
-    try {
-      const types = Object.keys(afterTitles);
-      const promises = types.map((type) => getQuestions("after", type));
-      const results = await Promise.all(promises);
-
-      const newQuestions: Record<string, QAInterface[]> = {};
-      types.forEach((type, index) => {
-        newQuestions[type] = results[index];
-      });
-
-      setQuestions(newQuestions);
-    } catch (error) {
-      console.error("Error fetching questions:", error);
-    }
+    setQuestions(await getQAAfter());
     setLoading(false);
-  };
+  }
 
   const filterArray = (array: QAInterface[], searchTerm: string) => {
     if (!searchTerm) return array;
@@ -104,7 +90,7 @@ export default function AfterPage() {
                         data-aos="fade-up"
                         className="text-gray-100 text-xl mb-1 sm:text-4xl sm:mb-[10px] font-semibold leading-normal sm:leading-tight tracking-tight text-right"
                       >
-                        {afterTitles[key]}
+                        {key}
                       </h1>
                       <AccordionList accordionList={list} />
                     </div>
@@ -127,3 +113,23 @@ export default function AfterPage() {
     </main>
   );
 }
+
+// const [search, setSearch] = useState<string>("");
+
+//     const {data : questions, error, isLoading} = useQuery<QAInterface[]>({
+//       queryFn: fetchData,
+//       queryKey: []
+//     })
+//     useEffect(() => {
+//       // fetchAllQuestions();
+//       AOS.init({
+//         duration: 500,
+//       });
+//     }, []);
+
+//       const filterArray = (array: QAInterface[], searchTerm: string) => {
+//         if (!searchTerm) return array;
+//         return array.filter((item) =>
+//           item.question.toLowerCase().includes(searchTerm.toLowerCase())
+//         );
+//       };

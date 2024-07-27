@@ -45,7 +45,7 @@ export default function Paths() {
               <img
                 src={path.svg}
                 alt="About services"
-                className="w-[200px] lg:w-[270px] mx-auto  "
+                className="w-[200px] lg:w-[270px] mx-auto opacity-70"
               />
               <h1 className="text-white opacity-80  text-2xl sm:text-4xl font-extrabold text-center ">
                 {path.name} <i className="fas fa-arrow-left"></i>

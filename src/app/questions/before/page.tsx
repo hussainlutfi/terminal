@@ -4,12 +4,11 @@ import { useEffect, useState } from "react";
 import { QAInterface } from "../../../../interfaces/question";
 import AccordionList from "../../../components/questions/accordionList";
 import { Tajawal } from "next/font/google";
-import { getQuestions } from "../action";
+import { getQABefore } from "../action";
 import Loader from "../../../components/loader";
 import LoaderStop from "../../../components/loader-stop";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { beforeTitles } from "../../../../data/titles";
 
 const tajawal = Tajawal({
   subsets: ["latin"],
@@ -24,34 +23,22 @@ export default function BeforePage() {
   const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    fetchAllQuestions();
+    getRecords();
     AOS.init({
       duration: 800,
     });
   }, []);
 
+  async function getRecords() {
+    setLoading(true);
+    setQuestions(await getQABefore());
+    setLoading(false);
+  }
+
   useEffect(() => {
     filterAll();
   }, [search, questions]);
 
-  const fetchAllQuestions = async () => {
-    setLoading(true);
-    try {
-      const types = Object.keys(beforeTitles);
-      const promises = types.map((type) => getQuestions("before", type));
-      const results = await Promise.all(promises);
-
-      const newQuestions: Record<string, QAInterface[]> = {};
-      types.forEach((type, index) => {
-        newQuestions[type] = results[index];
-      });
-
-      setQuestions(newQuestions);
-    } catch (error) {
-      console.error("Error fetching questions:", error);
-    }
-    setLoading(false);
-  };
 
   const filterArray = (array: QAInterface[], searchTerm: string) => {
     if (!searchTerm) return array;
@@ -102,7 +89,7 @@ export default function BeforePage() {
                         data-aos="fade-up"
                         className="text-gray-100 text-xl mb-[5px] sm:text-4xl sm:mb-[20px] font-semibold leading-normal sm:leading-tight tracking-tight text-right"
                       >
-                        {beforeTitles[key]}
+                        {key}
                       </h1>
                       <AccordionList accordionList={list} />
                     </div>
