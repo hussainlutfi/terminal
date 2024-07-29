@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import Footer from "@/components/footer";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 const tajawal = Tajawal({
   subsets: ["latin"],
@@ -29,9 +30,10 @@ export default function Home() {
           data-aos="fade-up"
           className="flex flex-col items-center justify-center pt-6"
         >
+          <GoogleAnalytics gaId="G-P1EDMR2E7D" />
           <HomeHeader />
           <HomeSquares />
-          <Footer/>
+          <Footer />
         </div>
       </div>
     </main>
