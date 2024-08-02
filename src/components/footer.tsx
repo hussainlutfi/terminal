@@ -51,7 +51,7 @@ export default function Footer() {
           طوّر بواسطة،{" "}
           <a
             className="text-gray-400 hover:opacity-70 underline"
-            href="https://www.linkedin.com/in/hussainlutfi/"
+            href="https://hussainlutfi.vercel.app/"
           >
             حسين الزاير
           </a>

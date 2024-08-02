@@ -23,6 +23,7 @@
     "react": "^18",
     "react-dom": "^18",
     "react-gtm-module": "^2.0.11",
+    "resend": "^3.5.0",
     "sweetalert2": "^11.12.2",
     "tailwind-merge": "^2.3.0"
   },

@@ -31,8 +31,37 @@ export default function FormInput({ major }: MajorInput) {
     setEmail("");
     setName("");
     setQuestion("");
+    await sendEmail();
   };
 
+  const sendEmail = async () => {
+    const data: string = question!;
+
+    try {
+      const response = await fetch("/api/send", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        // Handle the error response
+        const errorData = await response.json();
+        console.error("Error:", errorData);
+        // You can also display an error message to the user here
+      } else {
+        // Handle the success response
+        const responseData = await response.json();
+        console.log("Success:", responseData);
+        // You can also display a success message to the user here
+      }
+    } catch (error) {
+      console.error("Fetch error:", error);
+      // Handle the fetch error here, e.g., display an error message to the user
+    }
+  };
   return (
     <div className="w-full">
       <div className="flex justify-center">

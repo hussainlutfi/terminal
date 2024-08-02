@@ -27,10 +27,40 @@ export default function QuestionInput() {
       });
       setQuestion("");
       setEmail("");
+      await sendEmail();
     } catch (error) {
       console.error("Error submitting question:", error);
     }
   }
+
+  const sendEmail = async () => {
+    const data: string = question!;
+
+    try {
+      const response = await fetch("/api/send", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        // Handle the error response
+        const errorData = await response.json();
+        console.error("Error:", errorData);
+        // You can also display an error message to the user here
+      } else {
+        // Handle the success response
+        const responseData = await response.json();
+        console.log("Success:", responseData);
+        // You can also display a success message to the user here
+      }
+    } catch (error) {
+      console.error("Fetch error:", error);
+      // Handle the fetch error here, e.g., display an error message to the user
+    }
+  };
   return (
     <div className="h-[250px] w-[75%] mt-[25px]  opacity-75 sm:w-[350px] sm:h-[300px] rounded-2xl bg-white bg-opacity-70 flex flex-col items-center justify-around p-3 mb-4 sm:mb-0">
       <div>
